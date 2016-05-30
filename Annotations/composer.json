@@ -1,0 +1,10 @@
+{
+    "require": {
+        "doctrine/annotations": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Paris5\\": "src/Paris5"
+        }
+    }
+}
