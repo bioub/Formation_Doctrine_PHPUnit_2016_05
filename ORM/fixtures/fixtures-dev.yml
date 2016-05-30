@@ -1,0 +1,22 @@
+Paris5\Entity\Contact:
+    contact{1..10}:
+        prenom: <firstName()>
+        nom: <lastName()>
+        email: 50%? <email()>
+        telephone: 50%? <phoneNumber()>
+        dateNaissance: 50%? <dateTime('2000-01-01')>
+
+Paris5\Entity\Societe:
+    societe{1..5}:
+        nom: <company()>
+        codePostal: 50%? <postcode()>
+        ville: 50%? <city()>
+
+
+Paris5\Entity\Groupe:
+    groupe1:
+        nom: Amis
+        description: Mes amis
+    groupe2:
+        nom: Travail
+        description: Collègues

@@ -1,0 +1,11 @@
+{
+    "require": {
+        "doctrine/orm": "^2.5",
+        "nelmio/alice": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Paris5\\": "src/Paris5"
+        }
+    }
+}
