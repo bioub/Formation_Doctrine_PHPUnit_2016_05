@@ -2,8 +2,8 @@
 
 return [
     'controllers' => [
-        'invokables' => [
-            'Application\Controller\Index' => \Application\Controller\IndexController::class
-        ],
+        'abstract_factories' => [
+            \Application\Controller\ControllerAbstractFactory::class
+        ]
     ],
 ];

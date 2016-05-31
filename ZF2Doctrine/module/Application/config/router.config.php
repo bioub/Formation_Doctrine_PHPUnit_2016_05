@@ -8,8 +8,8 @@ return [
                 'options' => [
                     'route' => '/',
                     'defaults' => [
-                        'controller' => 'Application\Controller\Index',
-                        'action' => 'index',
+                        'controller' => 'Application\Controller\Contact',
+                        'action' => 'list',
                     ],
                 ],
             ],
