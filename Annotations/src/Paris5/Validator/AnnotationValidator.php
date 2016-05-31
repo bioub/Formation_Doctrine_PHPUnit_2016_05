@@ -36,7 +36,7 @@ class AnnotationValidator
             $name = $property->getName();
             $val = $entity->{'get'.ucfirst($name)}();
 
-            if ($val !== null && ($val < $annot->min || $val > $annot->max)) {
+            if ($val !== null && (strlen($val) < $annot->min || strlen($val) > $annot->max)) {
                 $valid = false;
             }
         }
