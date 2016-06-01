@@ -5,6 +5,9 @@
     <li>
         <?=$this->escapeHtml($contact->getPrenom())?>
         <?=$this->escapeHtml($contact->getNom())?>
+        <?php if ($contact->getSociete()) : ?>
+            <?=$this->escapeHtml($contact->getSociete()->getNom())?>
+        <?php endif; ?>
     </li>
     <?php endforeach; ?>
 </ul>

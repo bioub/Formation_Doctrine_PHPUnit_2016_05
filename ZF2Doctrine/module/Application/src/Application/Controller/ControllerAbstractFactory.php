@@ -21,7 +21,6 @@ class ControllerAbstractFactory implements AbstractFactoryInterface
         preg_match($this->regexp, $requestedName, $matches);
 
         $entity = $matches[1];
-        $doctrineServiceName = 'Application\Service\\' . $entity;
 
         if ($serviceLocator instanceof ControllerManager) {
             $sm = $serviceLocator->getServiceLocator(); // ZF2
@@ -30,10 +29,15 @@ class ControllerAbstractFactory implements AbstractFactoryInterface
             $sm = $serviceLocator; // ZF3
         }
 
+        $doctrineServiceName = 'Application\Service\\' . $entity;
         $doctrineService = $sm->get($doctrineServiceName);
+
+        $formServiceName = 'Application\Form\\' . $entity;
+        $formElementManager = $sm->get('FormElementManager');
+        $formService = $formElementManager->get($formServiceName);
 
         $controllerClass = $requestedName . 'Controller';
 
-        return new $controllerClass($doctrineService);
+        return new $controllerClass($doctrineService, $formService);
     }
 }

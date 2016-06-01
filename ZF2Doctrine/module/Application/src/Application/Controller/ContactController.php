@@ -9,6 +9,7 @@
 
 namespace Application\Controller;
 
+use Application\Form\ContactForm;
 use Application\Service\ContactService;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -21,12 +22,19 @@ class ContactController extends AbstractActionController
     protected $contactService;
 
     /**
+     * @var ContactForm
+     */
+    protected $contactForm;
+
+    /**
      * ContactController constructor.
      * @param ContactService $contactService
+     * @param ContactForm $contactForm
      */
-    public function __construct(ContactService $contactService)
+    public function __construct(ContactService $contactService, ContactForm $contactForm)
     {
         $this->contactService = $contactService;
+        $this->contactForm = $contactForm;
     }
 
     public function listAction()
@@ -35,6 +43,13 @@ class ContactController extends AbstractActionController
 
         return new ViewModel([
             'contacts' => $contacts
+        ]);
+    }
+
+    public function addAction()
+    {
+        return new ViewModel([
+           'contactForm' => $this->contactForm
         ]);
     }
 }

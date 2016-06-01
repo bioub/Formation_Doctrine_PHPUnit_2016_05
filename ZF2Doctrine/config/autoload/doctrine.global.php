@@ -18,5 +18,32 @@ return [
             ),
         ),
 
+        'configuration' => array(
+            // Configuration for service `doctrine.configuration.orm_default` service
+            'orm_default' => array(
+                // metadata cache instance to use. The retrieved service name will
+                // be `doctrine.cache.$thisSetting`
+                'metadata_cache'    => 'array',
+
+                // DQL queries parsing cache instance to use. The retrieved service
+                // name will be `doctrine.cache.$thisSetting`
+                'query_cache'       => 'array',
+            )
+        ),
+
+        'migrations_configuration' => array(
+            'orm_default' => array(
+                'directory' => __DIR__ . '/../../data/migrations',
+                'name' => 'Migrations',
+                'namespace' => 'Migrations',
+                'table' => 'migrations_table',
+                'column' => 'version',
+            ),
+        ),
+    ],
+    'service_manager' => [
+        'factories' => [
+            'doctrine.cache.memcached' => \Application\Factory\DoctrineCacheMemcachedFactory::class
+        ]
     ]
 ];

@@ -5,8 +5,9 @@ namespace Application\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Application\Repository\ContactRepository")
  * @ORM\Table(name="contact")
+ * @ORM\HasLifecycleCallbacks
  */
 class Contact
 {
@@ -29,10 +30,36 @@ class Contact
     /** @ORM\Column(length=20, nullable=true) */
     protected $telephone;
 
+    /** @ORM\Column(type="smallint", nullable=true) */
+    protected $taille;
+
     /** @ORM\Column(type="date", name="date_naissance", nullable=true) */
     protected $dateNaissance;
 
+    /** @ORM\ManyToOne(targetEntity="Application\Entity\Societe", fetch="LAZY") */
+    protected $societe;
 
+    /** @ORM\ManyToMany(targetEntity="Application\Entity\Groupe") */
+    protected $groupes;
+
+    /** @ORM\Column(type="datetime", name="modified_at") */
+    protected $modifiedAt;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->groupes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function updateModifiedAt()
+    {
+        $this->modifiedAt = new \DateTime();
+    }
 
     /**
      * Get id
@@ -162,5 +189,112 @@ class Contact
     public function getDateNaissance()
     {
         return $this->dateNaissance;
+    }
+
+    /**
+     * Set societe
+     *
+     * @param \Application\Entity\Societe $societe
+     *
+     * @return Contact
+     */
+    public function setSociete(\Application\Entity\Societe $societe = null)
+    {
+        $this->societe = $societe;
+
+        return $this;
+    }
+
+    /**
+     * Get societe
+     *
+     * @return \Application\Entity\Societe
+     */
+    public function getSociete()
+    {
+        return $this->societe;
+    }
+
+
+    /**
+     * Add groupe
+     *
+     * @param \Application\Entity\Groupe $groupe
+     *
+     * @return Contact
+     */
+    public function addGroupe(\Application\Entity\Groupe $groupe)
+    {
+        $this->groupes[] = $groupe;
+
+        return $this;
+    }
+
+    /**
+     * Remove groupe
+     *
+     * @param \Application\Entity\Groupe $groupe
+     */
+    public function removeGroupe(\Application\Entity\Groupe $groupe)
+    {
+        $this->groupes->removeElement($groupe);
+    }
+
+    /**
+     * Get groupes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGroupes()
+    {
+        return $this->groupes;
+    }
+
+    /**
+     * Set modifiedAt
+     *
+     * @param \DateTime $modifiedAt
+     *
+     * @return Contact
+     */
+    public function setModifiedAt($modifiedAt)
+    {
+        $this->modifiedAt = $modifiedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get modifiedAt
+     *
+     * @return \DateTime
+     */
+    public function getModifiedAt()
+    {
+        return $this->modifiedAt;
+    }
+
+    /**
+     * Set taille
+     *
+     * @param integer $taille
+     *
+     * @return Contact
+     */
+    public function setTaille($taille)
+    {
+        $this->taille = $taille;
+
+        return $this;
+    }
+
+    /**
+     * Get taille
+     *
+     * @return integer
+     */
+    public function getTaille()
+    {
+        return $this->taille;
     }
 }

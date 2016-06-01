@@ -13,6 +13,16 @@ return [
                     ],
                 ],
             ],
+            'add' => [
+                'type' => \Zend\Mvc\Router\Http\Literal::class,
+                'options' => [
+                    'route' => '/add',
+                    'defaults' => [
+                        'controller' => 'Application\Controller\Contact',
+                        'action' => 'add',
+                    ],
+                ],
+            ],
         ],
     ],
 ];

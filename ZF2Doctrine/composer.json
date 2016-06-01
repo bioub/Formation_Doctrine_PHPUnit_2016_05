@@ -27,10 +27,13 @@
         "zendframework/zend-log": "2.*",
         "zendframework/zend-i18n": "2.*",
         "zendframework/zend-console": "2.*",
-        "doctrine/doctrine-orm-module": "^0.10.0"
+        "doctrine/doctrine-orm-module": "^0.10.0",
+        "ocramius/proxy-manager": "^1.0",
+        "doctrine/migrations": "^1.4"
     },
     "require-dev": {
-        "zendframework/zend-test": "2.*"
+        "zendframework/zend-test": "2.*",
+        "zendframework/zend-developer-tools": "dev-master"
     },
     "autoload": {
         "psr-4": {

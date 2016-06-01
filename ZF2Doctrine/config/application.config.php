@@ -14,8 +14,8 @@ $modules = array(
     'Application',
 );
 
-if ($env == 'development') {
-    // $modules[] = 'ZendDeveloperTools';
+if ($env === 'development' || php_sapi_name() === 'cli-server') {
+    $modules[] = 'ZendDeveloperTools';
 }
 
 return array(
