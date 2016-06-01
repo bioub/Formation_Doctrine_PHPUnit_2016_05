@@ -44,7 +44,7 @@ class ContactService implements ContactServiceInterface
         return $this->getRepository()->findAllWithSociete();
     }
 
-    public function insert(Array $data, Form $form)
+    public function insert(Array $data)
     {
         $contact = new Contact();
         $this->hydrator->hydrate($data, $contact);

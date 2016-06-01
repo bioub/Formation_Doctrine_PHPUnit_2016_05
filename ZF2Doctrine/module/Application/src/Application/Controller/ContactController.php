@@ -50,7 +50,7 @@ class ContactController extends AbstractActionController
     {
         if ($this->request->isPost()) {
             $data = (array) $this->request->getPost();
-            $this->contactService->insert($data, $this->contactForm);
+            $this->contactService->insert($data);
 
             $this->redirect()->toRoute('home');
         }
