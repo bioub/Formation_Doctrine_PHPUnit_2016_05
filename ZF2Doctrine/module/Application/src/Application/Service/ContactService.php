@@ -5,10 +5,11 @@ namespace Application\Service;
 
 use Application\Entity\Contact;
 use Application\Repository\ContactRepository;
-use Doctrine\DBAL\Query\Expression\ExpressionBuilder;
 use Doctrine\ORM\EntityManager;
+use Zend\Form\Form;
+use Zend\Hydrator\HydratorInterface;
 
-class ContactService
+class ContactService implements ContactServiceInterface
 {
     /**
      * @var EntityManager
@@ -16,12 +17,18 @@ class ContactService
     protected $em;
 
     /**
+     * @var HydratorInterface
+     */
+    protected $hydrator;
+
+    /**
      * ContactService constructor.
      * @param EntityManager $em
      */
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManager $em, HydratorInterface $hydrator)
     {
         $this->em = $em;
+        $this->hydrator = $hydrator;
     }
 
     /**
@@ -35,6 +42,15 @@ class ContactService
     public function findAll()
     {
         return $this->getRepository()->findAllWithSociete();
+    }
+
+    public function insert(Array $data, Form $form)
+    {
+        $contact = new Contact();
+        $this->hydrator->hydrate($data, $contact);
+
+        $this->em->persist($contact);
+        $this->em->flush();
     }
 
     public function count()

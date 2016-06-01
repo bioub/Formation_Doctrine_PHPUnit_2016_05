@@ -23,9 +23,11 @@ class ServiceAbstractFactory implements AbstractFactoryInterface
         $entity = $matches[1];
 
         $em = $serviceLocator->get('doctrine.entitymanager.orm_default');
-
         $serviceClass = $requestedName . 'Service';
 
-        return new $serviceClass($em);
+        $hm = $serviceLocator->get('HydratorManager');
+        $hydrator = $hm->get('doctrinemodulestdlibhydratordoctrineobject');
+
+        return new $serviceClass($em, $hydrator);
     }
 }

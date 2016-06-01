@@ -30,16 +30,6 @@ return [
                 'query_cache'       => 'array',
             )
         ),
-
-        'migrations_configuration' => array(
-            'orm_default' => array(
-                'directory' => __DIR__ . '/../../data/migrations',
-                'name' => 'Migrations',
-                'namespace' => 'Migrations',
-                'table' => 'migrations_table',
-                'column' => 'version',
-            ),
-        ),
     ],
     'service_manager' => [
         'factories' => [

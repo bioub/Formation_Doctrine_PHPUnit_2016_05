@@ -6,6 +6,7 @@ use Application\Entity\Societe;
 use DoctrineModule\Form\Element\ObjectSelect;
 use DoctrineModule\Persistence\ObjectManagerAwareInterface;
 use DoctrineModule\Persistence\ProvidesObjectManager;
+use Zend\Form\Element\Date;
 use Zend\Form\Element\DateSelect;
 use Zend\Form\Element\Email;
 use Zend\Form\Element\Submit;
@@ -51,7 +52,7 @@ class ContactForm extends Form implements ObjectManagerAwareInterface
         ]);
 
         $this->add([
-            'type' => DateSelect::class,
+            'type' => Date::class,
             'name' => 'dateNaissance',
             'options' => [
                 'label' => 'Date de naissance',

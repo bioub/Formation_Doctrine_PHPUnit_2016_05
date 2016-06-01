@@ -37,7 +37,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Application\\": "module/Application/src/Application"
+            "Application\\": "module/Application/src/Application",
+            "ApplicationTest\\": "module/Application/tests/ApplicationTest"
         }
     }
 }
