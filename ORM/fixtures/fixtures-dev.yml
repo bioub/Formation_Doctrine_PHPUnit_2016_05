@@ -5,6 +5,7 @@ Paris5\Entity\Contact:
         email: 50%? <email()>
         telephone: 50%? <phoneNumber()>
         dateNaissance: 50%? <dateTime('2000-01-01')>
+        societe: 50%? @societe*
 
 Paris5\Entity\Societe:
     societe{1..5}:

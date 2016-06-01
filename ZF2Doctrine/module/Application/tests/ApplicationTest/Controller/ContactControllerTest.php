@@ -104,7 +104,7 @@ class ContactControllerTest extends AbstractHttpControllerTestCase
 
         echo $this->getApplication()->getResponse()->getContent();
 
-        $this->assertResponseStatusCode(302);
+        $this->assertRedirectTo('/');
     }
 
     public function testAddActionIsAccessible()
